@@ -1,1 +1,0 @@
-web: node graphql-metalarchives/server.js
