@@ -40,6 +40,8 @@ const YTK = new aws.S3({
     secretAccessKey: process.env.S3_SECRET
 });
 
+console.log(YTK);
+
 
 var youtubeURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=3&order=relevance&q=metal+music&regionCode=US&type=video&key=" + YTK;
 const ytUrl = "https://www.youtube.com/watch?v="
