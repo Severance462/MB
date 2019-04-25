@@ -1,0 +1,28 @@
+img {
+    /* max-width: 800px;
+    max-height: 800px;
+    min-width: 400px;
+    min-height: 400px; */
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 450px;
+}
+
+
+.navStyle {
+    min-height: 150px;
+}
+
+.tblDisco td {
+    width: 33%;
+}
+
+body {
+    background-color: black;
+    color: white;
+    height: 100%;
+    font-family: 'Times New Roman', Times, serif;
+    
+
+}
