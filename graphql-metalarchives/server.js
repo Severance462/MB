@@ -1,6 +1,6 @@
 const { GraphQLServer } = require('graphql-yoga');
 const axios = require('axios');
-
+const aws = require('aws-sdk');
 const express = require("express");
 const app = express();
 const request = require('request');
@@ -32,7 +32,16 @@ var readline = require('readline');
 var {google} = require('googleapis');
 //
 
-var youtubeURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=3&order=relevance&q=metal+music&regionCode=US&type=video&key=AIzaSyAKcQptkSlrP8vAmgtWeN4qrASi3NFR-7M"
+//////THIS NEEDS HEROKU VAR
+//YTK
+
+const YTK = new AWSLambda.S3({
+    accessKeyId: process.env.S3_KEY,
+    secretAccessKey: process.env.S3_SECRET
+});
+
+
+var youtubeURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=3&order=relevance&q=metal+music&regionCode=US&type=video&key=" + YTK;
 const ytUrl = "https://www.youtube.com/watch?v="
 
 const server = new GraphQLServer({
@@ -242,7 +251,13 @@ app.all('/DiscDetails/:id', async (req, res) =>{
     var st = encodeURIComponent(searchTerm)    
     //console.log(st)    
     //--->> this one
-    youtubeURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&order=relevance&q='" + st + "'&fields=items%2Fid%2FvideoId&key=AIzaSyAKcQptkSlrP8vAmgtWeN4qrASi3NFR-7M"
+
+    //////THIS NEEDS HEROKU CONFIG VAR
+    ////YTURL2
+    
+
+
+    youtubeURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&order=relevance&q='" + st + "'&fields=items%2Fid%2FvideoId&key=" + YTK;
 
     console.log(youtubeURL)
     var videoId = ""
@@ -353,6 +368,7 @@ app.get('*', (req, res)=>{
     res.render("error.hbs");
 })
 
-app.listen(3000, ()=>{
-    console.log("Server is up at localhost:3000")
-})
+//hosted or local
+app.listen(process.env.PORT || 3000, function(){
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+  });
