@@ -1,27 +1,22 @@
 {
-  "name": "graphql-metalarchives",
-  "version": "0.0.4",
-  "description": "GraphQL API for metal-archives.com",
+  "name": "mb",
+  "version": "1.0.0",
+  "description": "\\m/",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
-  },
-  "keywords": [
-    "graphql",
-    "node.js",
-    "metal-archives"
-  ],
-  "author": {
-    "name": "Caio Piassali",
-    "email": "caio.santana@fatec.sp.gov.br",
-    "url": "https://github.com/caiopiassali"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node graphql-metalarchives/server.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/caiopiassali/graphql-metalarchives.git"
+    "url": "git+https://github.com/Severance462/MB.git"
   },
-  "license": "GPL-2.0",
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Severance462/MB/issues"
+  },
+  "homepage": "https://github.com/Severance462/MB#readme", 
   "dependencies": {
     "async": "^2.6.2",
     "aws-sdk": "^2.442.0",
@@ -40,4 +35,5 @@
   "devDependencies": {
     "nodemon": "^1.18.9"
   }
+  
 }
