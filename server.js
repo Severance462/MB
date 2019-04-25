@@ -258,7 +258,7 @@ app.all('/DiscDetails/:id', async (req, res) =>{
     ////YTURL2
     
 
-
+/*
     youtubeURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&order=relevance&q='" + st + "'&fields=items%2Fid%2FvideoId&key=" + YTK;
 
     console.log(youtubeURL)
@@ -278,6 +278,8 @@ app.all('/DiscDetails/:id', async (req, res) =>{
     else {
         video = videoId.items[0].id.videoId
     }
+*/
+    video = "DFK1ivuS1k0"
 
     res.render('DiscDetails.hbs', {details: discDetails, songList: songList, video: video})            
 })
