@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-lg navbar-inverse">
+  <a class="navbar-brand" href="http://localhost:3000/"><img src="/images/metalIcon.jpg" width="50" height="50" alt="\m/"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <ul class="navbar-nav mr-auto">
+<form style="padding-left:150px; margin:25px" action="/Results" method="POST">  
+  <input name="txtSearch" />
+  <label class="radio-inline" style="margin:15px">
+    <input type="radio" name="rbSearchTerm" value="Band" onchange="val(this)" checked="checked">Band</label>
+  </label>
+  <label class="radio-inline" style="margin:15px">
+    <input type="radio" name="rbSearchTerm" value="Song" onchange="val(this)">Song</label>
+  </label>
+
+  <button type="submit" class="btn btn-outline-light">Submit</button>
+</form>
+  </ul>
+  <ul class="navbar-nav justify-content-between">
+      <li class="nav-item justify-content-between">
+        <a class="nav-link" href="http://localhost:4000/">GraphQL Interface</a>
+      </li>   
+    </ul>
+  </ul>
+</nav>
