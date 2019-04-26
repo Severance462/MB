@@ -1,3 +1,4 @@
+const dotenv = require('dotenv').config();
 const { GraphQLServer } = require('graphql-yoga');
 const axios = require('axios');
 const aws = require('aws-sdk');
@@ -32,15 +33,30 @@ var readline = require('readline');
 var {google} = require('googleapis');
 //
 
+// const result = dotenv.config()
+
+// if (result.error) {
+//   throw result.error
+// }
+
+// console.log(result.parsed)
+const YTK = process.env.ytk
+const YTKb = process.env.ytkb
+// const dotenvp = require('dotenv')
+// const buf = Buffer.from('YTK=env')
+// const config = dotenvp.parse(buf)
+// console.log(typeof config, config)
 //////THIS NEEDS HEROKU VAR
 //YTK
 
-const YTK = new aws.S3({
-    accessKeyId: process.env.S3_KEY,
-    secretAccessKey: process.env.S3_SECRET
-});
+// let YTK = new aws.S3({
+//     accessKeyId: process.env.AWS_ACCESS_KEY,
+//     secretAccessKey: process.env.AWS_SECRET_KEY
+// });
 
-console.log(YTK);
+
+
+ 
 
 
 var youtubeURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=3&order=relevance&q=metal+music&regionCode=US&type=video&key=" + YTK;
@@ -258,17 +274,25 @@ app.all('/DiscDetails/:id', async (req, res) =>{
     ////YTURL2
     
 
-/*
+
     youtubeURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&order=relevance&q='" + st + "'&fields=items%2Fid%2FvideoId&key=" + YTK;
 
-    console.log(youtubeURL)
+     console.log(youtubeURL)
     var videoId = ""
     try{
         
         videoId = await ytSearchForAlbum(youtubeURL)
     }
     catch (err){
-        console.log(err.response.statusText)
+        console.log("Boo..." + err.response.statusText)
+
+        // try{
+        //     youtubeURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&order=relevance&q='" + st + "'&fields=items%2Fid%2FvideoId&key=" + YTKb;
+        //     videoId = await ytSearchForAlbum(youtubeURL)
+        // }
+        // catch(err){
+        //     console.log("-urns... " + err.response.statusText)
+        // }
     }
     console.log(videoId.items[0].id.videoId)
     
@@ -278,8 +302,8 @@ app.all('/DiscDetails/:id', async (req, res) =>{
     else {
         video = videoId.items[0].id.videoId
     }
-*/
-    video = "DFK1ivuS1k0"
+
+
 
     res.render('DiscDetails.hbs', {details: discDetails, songList: songList, video: video})            
 })
