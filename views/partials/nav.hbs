@@ -1,47 +1,19 @@
-
-    <nav class="navbar navbar-expand-lg navbar-inverse">
+<nav class="navbar navbar-expand-lg navbar-inverse">
   <a class="navbar-brand" href="/"><img src="/images/metalIcon.jpg" width="50" height="50" alt="\m/"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <ul class="navbar-nav mr-auto">
 <form style="padding-left:150px; margin:25px" action="/Results" method="POST">  
-  <input name="txtSearch" placeholder="Search"/>
+  <input name="txtSearch" />
   <label class="radio-inline" style="margin:15px">
     <input type="radio" name="rbSearchTerm" value="Band" onchange="val(this)" checked="checked">Band</label>
   </label>
   <label class="radio-inline" style="margin:15px">
     <input type="radio" name="rbSearchTerm" value="Song" onchange="val(this)">Song</label>
   </label>
-  <label class="radio-inline" style="margin:15px">
-    <input type="radio" name="rbSearchTerm" value="Genre" onchange="val(this)">Genre</label>
-  </label>
-  
 
-  <input type="hidden" name="txtStart" value={{#if start}}'{{start}}' {{else}}'0'{{/if}}>
-
-  {{!-- <label class="radio-inline" style="margin:15px">
-      <input type="radio" name="rbSearchTerm" value="Country" onchange="val(this)">Country</label>
-  </label>
-  {{{ddCountries}}} --}}
-
-
-  {{!-- <label class="form-check form-check-inline" style="margin:15px">
-    <input class="form-check-input" type="checkbox" id="sCk1" name="rbSearchTerm" value="Band" onchange="val(this)" checked="checked">Band</label>
-  </label>
-  <label class="form-check form-check-inline" style="margin:15px">
-    <input class="form-check-input" type="checkbox" id="sCk2" name="rbSearchTerm" value="Song" onchange="val(this)" checked="checked">Band</label>
-  </label>
-  <label class="form-check form-check-inline" style="margin:15px">
-    <input class="form-check-input" type="checkbox" id="sCk3" name="rbSearchTerm" value="Genre" onchange="val(this)" checked="checked">Band</label>
-  </label>
-  <label class="form-check form-check-inline" style="margin:15px">
-    <input class="form-check-input" type="checkbox" id="sCk4" name="rbSearchTerm" value="Country" onchange="val(this)" checked="checked">Country</label>
-  </label>
-       --}}
-  
-  
-  <button type="submit" id="btnSearchSub" class="btn btn-outline-light">Submit</button>
+  <button type="submit" class="btn btn-outline-light">Submit</button>
 </form>
   </ul>
   <ul class="navbar-nav justify-content-between">

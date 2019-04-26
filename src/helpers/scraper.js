@@ -16,7 +16,6 @@ const GET_LYRISC_URL = BASE_URL + '/release/ajax-view-lyrics/id/';
 const GET_ALL_REVIEWS_BY_DATE_URL = BASE_URL + '/review/ajax-list-browse/by/date/selection/';
 const GET_BAND_REVIEWS_URL = BASE_URL + '/review/ajax-list-band/id/';
 
-
 class Scraper {
     //    ("", "Black+Sabbath", "0", "0", "0")
     static searchSongs(songTitle, bandName, lyrics, start, length) {
@@ -136,17 +135,12 @@ class Scraper {
     }
 
     static getBands(bandName, genre, country, formationFrom, formationTo, status, start) {
-        let limit = 1000
         let countries = country.split(',').map(value => `&country[]=${value}`);
         if (countries.length === 1) countries.push(countries[0]);
         let statuses = status.split(',').map(value => `&status[]=${value}`);
         if (statuses.length === 1) statuses.push(statuses[0]);
-        // if (country != "")
-        // {
-            
-        // }
         return new Promise((resolve, reject) => {
-            axios.get(`${GET_ALL_BANDS_URL}?bandName=${bandName}&genre=${genre}&country=${countries.join("")}&yearCreationFrom=${formationFrom}&yearCreationTo=${formationTo}&bandNotes=&status=${statuses.join("")}&themes=&location=&bandLabelName=&sEcho=1&iColumns=5&sColumns=&iDisplayStart=${start}&iDisplayLength=${limit}&mDataProp_0=0&mDataProp_1=1&mDataProp_2=2&mDataProp_3=3&mDataProp_4=4`)
+            axios.get(`${GET_ALL_BANDS_URL}?bandName=${bandName}&genre=${genre}${countries.join("")}&yearCreationFrom=${formationFrom}&yearCreationTo=${formationTo}&bandNotes=&status=${statuses.join("")}&themes=&location=&bandLabelName=&sEcho=1&iColumns=5&sColumns=&iDisplayStart=${start}&iDisplayLength=200&mDataProp_0=0&mDataProp_1=1&mDataProp_2=2&mDataProp_3=3&mDataProp_4=4`)
                 .then(({data}) => {
                     const bands = data.aaData;
                     const resp = [];
