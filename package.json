@@ -33,6 +33,7 @@
     "graphql": "^14.1.1",
     "graphql-yoga": "^1.17.4",
     "hbs": "^4.0.4",
+    "react-collapsible": "^2.6.0",
     "replace-string": "^2.0.0",
     "request": "^2.88.0",
     "trim": "0.0.1",
