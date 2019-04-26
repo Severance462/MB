@@ -1,4 +1,5 @@
 const dotenv = require('dotenv').config();
+
 const { GraphQLServer } = require('graphql-yoga');
 const axios = require('axios');
 const aws = require('aws-sdk');
@@ -72,6 +73,8 @@ const options = {
     subscriptions: '/subscriptions',
     playground: ['/playground', '/']
 };
+// import { NODE_ENV } from './config';
+
 
 // function authorize(credentials, requestData, callback) {
 //     var clientSecret = credentials.installed.client_secret;
