@@ -40,8 +40,8 @@ var {google} = require('googleapis');
 // }
 
 // console.log(result.parsed)
-const YTK = process.env.ytk
-const YTKb = process.env.ytkb
+const ytk = process.env.ytk
+const ytkb = process.env.ytkb
 // const dotenvp = require('dotenv')
 // const buf = Buffer.from('YTK=env')
 // const config = dotenvp.parse(buf)
@@ -59,7 +59,7 @@ const YTKb = process.env.ytkb
  
 
 
-var youtubeURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=3&order=relevance&q=metal+music&regionCode=US&type=video&key=" + YTK;
+var youtubeURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=3&order=relevance&q=metal+music&regionCode=US&type=video&key=" + ytk;
 const ytUrl = "https://www.youtube.com/watch?v="
 
 const server = new GraphQLServer({
@@ -274,8 +274,8 @@ app.all('/DiscDetails/:id', async (req, res) =>{
     ////YTURL2
     
 
-console.log(ytk)
-    youtubeURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&order=relevance&q='" + st + "'&fields=items%2Fid%2FvideoId&key=" + YTK;
+
+    youtubeURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&order=relevance&q='" + st + "'&fields=items%2Fid%2FvideoId&key=" + process.env.ytk;
 
     console.log(youtubeURL)
     var videoId = ""
