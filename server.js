@@ -43,13 +43,12 @@ var {google} = require('googleapis');
 // console.log(result.parsed)
 
 
-/*
+
 const ytk = process.env.ytk
 const ytkb = process.env.ytkb
-*/
 
-const ytk = 'AIzaSyA5hTu7c5XJom4Pgtvy81FTPcvwa1Pa0fQ'
-const ytkb = 'AIzaSyDzfmR_TF9RtsfJEqEf50hjW42SnVgem2o'
+
+
 
 // const dotenvp = require('dotenv')
 // const buf = Buffer.from('YTK=env')
@@ -318,13 +317,13 @@ app.all('/DiscDetails/:id', async (req, res) =>{
     catch (err){
         console.log("Boo..." + err.response.statusText)
 
-        // try{
-        //     youtubeURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&order=relevance&q='" + st + "'&fields=items%2Fid%2FvideoId&key=" + YTKb;
-        //     videoId = await ytSearchForAlbum(youtubeURL)
-        // }
-        // catch(err){
-        //     console.log("-urns... " + err.response.statusText)
-        // }
+        try{
+            youtubeURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&order=relevance&q='" + st + "'&fields=items%2Fid%2FvideoId&key=" + YTKb;
+            videoId = await ytSearchForAlbum(youtubeURL)
+        }
+        catch(err){
+            console.log("-urns... " + err.response.statusText)
+        }
     }
     console.log(videoId.items[0].id.videoId)
     
