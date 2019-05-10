@@ -23,6 +23,18 @@ body {
     color: white;
     height: 100%;
     font-family: 'Times New Roman', Times, serif;
-    
+}
 
+#ASForm input {
+    width: 300px;
+}
+
+#ddStatus {
+    height: 30px;
+     width: 160px;
+}
+
+#bandPhoto {    
+    max-width:450px; 
+    max-height: 450px;
 }

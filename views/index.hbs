@@ -10,7 +10,7 @@
     {{>nav}}
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <div class="text-center">
                     {{#if randBand.photoUrl}} 
                         <img class="text-center" src="{{randBand.logoUrl}}" alt="Band Logo">
@@ -19,11 +19,19 @@
                     {{/if}}
                 </div>
             </div>
+
+            <div class="col-md-6">
+                <div class="text-center" >     
+                    {{#if randBand.photoUrl}}  
+                        <img id="bandPhoto" src="{{randBand.photoUrl}}" alt="Band Photo">
+                    {{/if}}
+                </div>
+            </div>
+
         </div>
-        <br />
-        <br />
+<br /><br />
         <div class="row">
-            <div class="col-5">
+            <div class="col-md-6">
                 <table class="table table-responsive">
                     <tbody class="text-light">
                         <tr>
@@ -77,24 +85,11 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-md-7">
-                <div class="text-center" >     
-                    {{#if randBand.photoUrl}}  
-                        <img src="{{randBand.photoUrl}}" alt="Band Photo">
-                    {{/if}}
-                </div>
+            <div class="col-md-6">
+                {{{discography}}}
             </div>
-        </div>
-<hr>
-        <div class="row" >
-            <div class="col-md-12">
-                <h4>Discography</h4>                
-            </div>
-        </div>
-        <div class="row">
-            {{{discography}}}
-        </div>
-        {{>footer}}
+        {{!-- {{>footer}} --}}
+        </div> 
     </div>
 </body>
 </html>

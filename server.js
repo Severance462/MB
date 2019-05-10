@@ -1,5 +1,5 @@
 const dotenv = require('dotenv').config();
-
+const iso = require('iso-3166-1');
 const { GraphQLServer } = require('graphql-yoga');
 const axios = require('axios');
 const aws = require('aws-sdk');
@@ -41,8 +41,16 @@ var {google} = require('googleapis');
 // }
 
 // console.log(result.parsed)
+
+
+/*
 const ytk = process.env.ytk
 const ytkb = process.env.ytkb
+*/
+
+const ytk = 'AIzaSyA5hTu7c5XJom4Pgtvy81FTPcvwa1Pa0fQ'
+const ytkb = 'AIzaSyDzfmR_TF9RtsfJEqEf50hjW42SnVgem2o'
+
 // const dotenvp = require('dotenv')
 // const buf = Buffer.from('YTK=env')
 // const config = dotenvp.parse(buf)
@@ -57,7 +65,28 @@ const ytkb = process.env.ytkb
 
 
 
- 
+ //MA advanced search link
+ // https://www.metal-archives.com/search/ajax-advanced/searching
+ // /bands/?
+ // bandName=Black+Sabbath
+ // &genre=
+ // &country=
+ // &yearCreationFrom=
+ // &yearCreationTo=
+ // &bandNotes=
+ // &status=
+ // &themes=
+ // &location=
+ // &bandLabelName=
+ // &sEcho=1
+ // &iColumns=3
+ // &sColumns=
+ // &iDisplayStart=0
+ // &iDisplayLength=200
+ // &mDataProp_0=0
+ // &mDataProp_1=1
+ // &mDataProp_2=2
+ // &_=1557449347084
 
 
 var youtubeURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=3&order=relevance&q=metal+music&regionCode=US&type=video&key=" + ytk;
@@ -278,7 +307,7 @@ app.all('/DiscDetails/:id', async (req, res) =>{
     
 
 
-    youtubeURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&order=relevance&q='" + st + "'&fields=items%2Fid%2FvideoId&key=" + process.env.ytk;
+    youtubeURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&order=relevance&q='" + st + "'&fields=items%2Fid%2FvideoId&key=" + ytk;
 
     console.log(youtubeURL)
     var videoId = ""
@@ -315,6 +344,7 @@ app.all('/DiscDetails/:id', async (req, res) =>{
 //     res.render('Search.hbs');
 // })
 
+/*
 async function generateBandsTable(searchResults){
     var genResults = "<table class='table text-light' ><tbody>"
     genResults += "<tr><th>Band</th><th>Genre</th><th>Country</th></tr>"  
@@ -323,6 +353,25 @@ async function generateBandsTable(searchResults){
         genResults += "<td><a href='/Band/" + searchResults[i].id + "'> " + searchResults[i].name + "</a></td>"
         genResults += "<td>" + searchResults[i].genre + "</td>"
         genResults += "<td>" + searchResults[i].country + "</td>"        
+        genResults += "</tr>"
+    }
+    genResults += "</table></tbody>"
+    return genResults
+}
+*/
+async function generateBandsTable(searchResults){
+    console.log(searchResults)
+    var genResults = "<table class='table text-light' ><tbody>"
+    genResults += "<tr><th>Band</th><th>Genre</th><th>Country</th></tr>"  
+    for(var i = 0; i < searchResults.length; i++){
+        genResults += "<tr>"        
+        genResults += "<td><a href='/Band/" + searchResults[i].id + "'> " + searchResults[i].name + "</a></td>"
+        genResults += "<td>" + searchResults[i].genre + "</td>"
+        genResults += "<td>" + searchResults[i].country + "</td>"        
+        // genResults += "<td>" + searchResults[i].location + "</td>"        
+        // genResults += "<td>" + searchResults[i].themes + "</td>"        
+        // genResults += "<td>" + searchResults[i].label + "</td>"        
+        // genResults += "<td>" + searchResults[i].yearCreated + "</td>"   
         genResults += "</tr>"
     }
     genResults += "</table></tbody>"
@@ -348,6 +397,60 @@ async function genSongSearchTable(searchResults){
     return genSongResults
 }
 
+app.all('/AdvSearch', async(req, res)=>{
+
+
+    
+    //res.sendFile(__dirname + '/public/countries.json');
+    //let CL = fs.readFileSync(__dirname + '/public/countries.json');
+/*    
+    fs.readFile(__dirname + '/public/countries.json', 'utf8', (err, data) =>{        
+        if(err) return console.error(err);
+        console.log(data)
+        var ddCountries = "<select id='ddCountries'>"                        
+        for(var i = 0; i < data.length; i++)
+        {
+            console.log(data[i])
+            //ddCountries += "<option value=" + data[i].Code + ">" + data[i].Name + "</option>";
+        }
+        ddCountries += "</select>";
+        //console.log(ddCountries)
+        res.render('AdvSearch.hbs', {ddCountries: ddCountries})   
+*/
+
+        /*
+        var ddCountries = "<select id='ddStatus'>"                        
+        data.forEach(function(element){
+            //ddCountries += "<option value=" + element.Code + ">" + element.Name + "</option>";
+            console.log(element)
+        })
+        ddCountries += "</select>";
+        console.log(ddCountries)
+        res.render('AdvSearch.hbs', {ddCountries: ddCountries})
+        */
+        // var ddCountries = "<select id='ddStatus'>"                        
+        // for(var i = 0; i < data.length; i++)
+        // {
+        //     ddCountries += "<option value=" + data[i].Code + ">" + data[i].Name + "</option>";
+        // }
+        // ddCountries += "</select>";
+        // console.log(ddCountries)
+        // res.render('AdvSearch.hbs', {ddCountries: ddCountries})    
+    //});
+    
+    // console.log(CL)
+    // var ddCountries = "<select id='ddStatus'>"                        
+    // for(var i = 0; i < CL.length; i++)
+    // {
+    //     ddCountries += "<option value=" + CL[i].Code + ">" + CL[i].Name + "</option>";
+    // }
+    // ddCountries = "</select>";
+    // res.render('AdvSearch.hbs', {ddCountries: ddCountries})    
+    
+    res.render('AdvSearch.hbs')    
+})
+
+
 app.all('/Lyrics/:id', async(req, res)=>{
     
     const lyricsId = req.params.id;
@@ -367,6 +470,10 @@ app.post('/Results', async (req,res)=>{
         searchResults = await Scraper.getBands(searchTerm, "", "", "", "", "", 0) 
         genResults = await generateBandsTable(searchResults)
         //searchResults = await Scraper.searchByBands(searchTerm)        
+    } else if(req.body.rbSearchTerm == "Genre"){
+        searchResults = await Scraper.getBands("", searchTerm, "", "", "", "", 0) 
+        genResults = await generateBandsTable(searchResults)
+        //searchResults = await Scraper.searchByBands(searchTerm)        
     } else {        
         searchResults = await Scraper.searchBySongs(searchTerm, "", "0", "100")
         //console.log(searchResults)
@@ -377,6 +484,66 @@ app.post('/Results', async (req,res)=>{
     //console.log(genResults)
     res.render('Results.hbs', { results: genResults});
 })
+
+app.post('/AdvResults', async (req,res)=>{
+    /*
+    console.log(req.body.txtSearch + " ----- " + req.body.rbSearchTerm);
+    var searchResults = {}
+    var searchTerm = encodeURIComponent(req.body.txtSearch)   
+
+    //searchTerm = await Scraper.searchByBands("Black+Sabbath", "0", "10")
+    var genResults = {}
+    if(req.body.rbSearchTerm == "Band"){
+        searchResults = await Scraper.getBands(searchTerm, "", "", "", "", "", 0) 
+        genResults = await generateBandsTable(searchResults)
+        //searchResults = await Scraper.searchByBands(searchTerm)        
+    } else if(req.body.rbSearchTerm == "Genre"){
+        searchResults = await Scraper.getBands("", searchTerm, "", "", "", "", 0) 
+        genResults = await generateBandsTable(searchResults)
+        //searchResults = await Scraper.searchByBands(searchTerm)        
+    } else {        
+        searchResults = await Scraper.searchBySongs(searchTerm, "", "0", "100")
+        //console.log(searchResults)
+        genResults = await genSongSearchTable(searchResults)
+        //searchResults = await Scraper.searchBySongs(searchTerm)
+    }
+    */
+    //console.log(searchResults)    
+    //console.log(genResults)
+
+    var searchResults = {}
+    
+    var sCountry = iso.whereCountry(req.body.txtCountry);     
+        
+    
+    //console.log(sCountry);
+    var searchTerms = [
+        encodeURIComponent(req.body.txtBandName), 
+        encodeURIComponent(req.body.txtGenre), 
+        encodeURIComponent(sCountry),
+        encodeURIComponent(req.body.txtLocation),         
+        encodeURIComponent(""),
+        //encodeURIComponent(req.body.ddStatus), 
+        encodeURIComponent(req.body.txtThemes), 
+        encodeURIComponent(req.body.txtLabel), 
+        encodeURIComponent(req.body.txtYearCreationFrom), 
+        encodeURIComponent(req.body.txtYearCreationTo)
+    ]
+    
+    if(searchTerms[2] == 'undefined')
+        searchTerms[2] = ""
+    else
+        searchTerms[2] = sCountry.alpha2
+    console.log(searchTerms)
+    //console.log(req.body)
+    
+    searchResults = await Scraper.getBands(searchTerms[0], searchTerms[1], searchTerms[2], searchTerms[8], searchTerms[9], "", "0", "100")
+    genResults = await generateBandsTable(searchResults)
+
+    res.render('Results.hbs', { results: genResults});
+})
+
+
 
 app.all('/Band/:id', async (req, res) => {    
     //var doThese = async function(req){
@@ -393,6 +560,105 @@ app.all('/Band/:id', async (req, res) => {
     //}
 
     //doThese();    
+})
+
+app.all('/testorz', async (req, res) => {
+
+//returns -> id, name, genre, country, location, themes, status, label, formYear, yearsActive, photoUrl, logoUrl
+    //const getBand = await Scraper.getBand(99)
+    //res.send(getBand);
+
+//returns -> id, name, genre, country
+    //const getBands = await Scraper.getBands("Black Sabbath", "", "", "", "", "", "")
+    //res.send(getBands);
+
+//returns -> totalResult, currentResult, songs [title, band, type, album, lyricsId]
+    // const getSongs = await Scraper.searchSongs(songTitle, bandName, lyrics, start, length)
+    //const getSongs = await Scraper.searchSongs("Paranoid", "", "", 0, 100)
+    //res.send(getSongs);
+
+//use searchSongs instead - returns -> totalResult, currentResult, songs [title, band, type, album, lyricsId]    
+    // const getSongs = await Scraper.searchBySongs(songTitle, lyrics, start, length)
+    //const getSearchSongs = await Scraper.searchBySongs("Paranoid", "", 0, 100)
+    //res.send(getSearchSongs);
+
+//returns -> id, lyrics    
+    // const getSongs = await Scraper.getLyrics(lyricsId)
+    //const getLyrics = await Scraper.getLyrics('4419A')
+    //res.send(getLyrics)
+
+//returns -> id, name, genre, country, location, themes, status, label, formYear, yearsActive, photoUrl, logoUrl
+    //const getRandomBand = await Scraper.getRandomBand()
+    //res.send(getRandomBand)
+
+    // const getDisc = await Scraper.getDisc(albumID)
+//returns -> id, name, band, type, releaseDate, label, format, coverUrl
+    //const getDisc = await Scraper.getDisc(485)
+    //res.send(getDisc)
+
+
+    // const getDiscog = await Scraper.getDiscog(bandID, type)
+//returns-> id, name, type, year
+    //const getDiscogByTitles = await Scraper.getDiscog(99, 'all')
+    //res.send(getDiscogByTitles)
+    
+//returns -> id (maybe empty), title, album, band, rating, date, text
+    // const getReview = await Scraper.getReview(reviewID, albumID)
+    //const getReview = await Scraper.getReview("", 485)
+    //res.send(getReview)
+
+//returns -> number, title, band, album, length, lyricsId
+    // const getDiscSongs = await Scraper.getDiscSongs(discID)
+    //const getDiscSongs = await Scraper.getDiscSongs(485)
+    //res.send(getDiscSongs)
+
+//returns -> id, title, rating, date    
+    // const getDiscReviews = await Scraper.getDiscReviews(albumID)
+    //const getDiscReviews = await Scraper.getDiscReviews(485)
+    //res.send(getDiscReviews)
+
+//returns -> id, releaseDate, label, format, description    
+    // const getDiscVersions = await Scraper.getDiscVersions(albumID)
+    //const getDiscVersions = await Scraper.getDiscVersions(485)
+    //res.send(getDiscVersions)
+
+
+//busted atm
+     //const getReviewsByDate = await Scraper.getReviewsByDate(year, month, sort, start)
+    //const getReviewsByDate = await Scraper.getReviewsByDate("1999", "", "asc", 0)
+    //res.send(getReviewsByDate)
+
+//busted atm    
+    //const getBandCount = await Scraper.getBandCount()
+    //res.send(getBandCount)
+        
+
+//busted atm
+    // const getBandReviews = await Scraper.getBandReviews(bandID, start)
+    //const getBandReviews = await Scraper.getBandReviews(99, 0)
+    //res.send(getReview)
+    
+    
+})
+
+
+
+
+
+
+app.get('/index', (req, res)=>{
+    var doThese = async function(){
+        const randBand = await Scraper.getRandomBand()
+        const randBandDiscography = await Scraper.getDiscog(randBand.id, 'all')
+
+        //console.log("band: " + randBand + " || Disco: " + randBandDiscography)
+
+        const disco = await genDiscoTable(randBandDiscography)
+
+        res.render('index.hbs', {randBand: randBand, discography: disco})        
+    }
+
+    doThese();    
 })
 
 app.get('*', (req, res)=>{

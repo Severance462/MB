@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    {{>header}}
+    {{>bootstrap}}
+    {{!-- <script src='https://www.youtube.com/iframe_api' async></script> --}}
+    <title>\m/ - Search</title>
+</head>
+    <body>
+        {{>navAlt}}
+        <div class="container">
+            <div class="row">
+                <h2>Advanced Search</h2>
+            </div>
+            <form action="/AdvResults" method="POST" style="margin: 10px">  
+            <div id="ASForm">
+                <h4>By Band</h4>   
+            <div class="row">           
+                
+                <div class="col-md-5">
+
+                    <label>Band Name</label>
+                    <br />
+                    <input name="txtBandName" placeholder="Band Name"/>
+                    <br /><br />
+                    <label>Genre</label>
+                    <br />
+                    <input name="txtGenre" placeholder="Genre" />
+                    <br /><br />
+                    <label>Country</label>
+                    <br />
+                    <input name="txtCountry"  placeholder="Country"/>
+                    {{!-- {{ddCountries}} --}}
+                    <br /><br />
+                    <label>Location</label>
+                    <br />
+                    <input name="txtLocation" placeholder="Location" />
+                    
+                    
+                </div>
+                <div class="col-md-5">
+
+                    <label>Status</label>
+                    <br />
+                    {{!-- Active, Split-up, Unknown, On hold, Changed name, --}}
+                    {{!-- <div class="dropdown">
+                        <button class="btn btn-outline-light dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" value="">Any</a></li>
+                            <li><a class="dropdown-item" value="Active">Active</a></li>
+                            <li><a class="dropdown-item" value="On hold">On hold</a></li>
+                            <li><a class="dropdown-item" value="Changed name">Changed name</a></li>
+                            <li><a class="dropdown-item" value="Split-up">Split-up</a></li>
+                            <li><a class="dropdown-item" value="Unknown">Unknown</a></li>
+                        </ul>
+                    </div> --}}
+
+                    <select disabled="true" id="ddStatus">
+                        <option value="Any">Any</option>
+                        <option value="Active">Active</option>
+                        <option value="On hold">On hold</option>
+                        <option value="Changed name">Changed name</option>                        
+                        <option value="Split-up">Split-up</option>
+                        <option value="Unknown">Unknown</option>
+                    </select>
+                    {{!-- <input name="txtStatus" placeholder="Status"/> --}}
+                    <br /><br />
+                    <label>Themes</label>
+                    <br />
+                    <input name="txtThemes" placeholder="Themes" />
+                    <br /><br />
+                    <label>Label</label>
+                    <br />
+                    <input name="txtLabel" placeholder="Record Label" />
+                    <br /><br />
+                    <label>Formed between</label><br/>
+                    <div class="row">
+                        <div class="col-md-3">                            
+                            <input type="date" name="txtYearCreationFrom" style="width:160px" placeholder="Date" /> <label>and</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">                            
+                            <input type="date" name="txtYearCreationTo" style="width:160px" placeholder="Date" />
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+            </div>
+        <br/><br/><br/>
+        <div class="row">
+            <div class="col-md-5"> 
+                <button type="submit" class="btn btn-outline-light">Submit</button>
+                <br/>
+            </div>
+            
+            <div class="col-md-5">
+                <button type="reset" class="btn btn-light">Clear</button>
+            </div>
+        </div>        
+            </form>
+        </div>        
+    </body>
+</html>
+
+
+
+ {{!-- // bandName=Black+Sabbath
+ // &genre=
+ // &country=
+ // &yearCreationFrom=
+ // &yearCreationTo=
+ // &bandNotes=
+ // &status=
+ // &themes=
+ // &location=
+ // &bandLabelName= --}}
